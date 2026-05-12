@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kevin Seelu — Electronics & Instrumentation Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@300;400;500&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F0EDE7;
+  --bg2:      #E8E4DC;
+  --ink:      #161412;
+  --ink2:     #3D3A36;
+  --muted:    #8C8680;
+  --accent:   #B84C1E;
+  --border:   #D4CFC8;
+  --serif:    'Cormorant', Georgia, serif;
+  --mono:     'IBM Plex Mono', monospace;
+  --body:     'Figtree', sans-serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease, background 0.2s;
+  mix-blend-mode: multiply;
+}
+.cursor.big { transform: translate(-50%, -50%) scale(4); opacity: 0.15; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 3.5rem;
+  background: rgba(240,237,231,0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-mark {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0 3.5rem 3rem;
+  overflow: hidden;
+}
+
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 2.5rem;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 2.5rem; height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(5rem, 13vw, 13rem);
+  font-weight: 600;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+
+.hero-name em { font-style: italic; color: var(--accent); }
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  align-items: end;
+}
+
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--ink2);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.hero-meta { display: flex; flex-direction: column; gap: 0.35rem; }
+.hero-meta span {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.hero-meta strong {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.hero-cta { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end; }
+
+.btn {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.9rem 2rem;
+  transition: all 0.25s;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.btn-solid { background: var(--ink); color: var(--bg); }
+.btn-solid:hover { background: var(--accent); }
+.btn-outline { border: 1px solid var(--border); color: var(--ink2); }
+.btn-outline:hover { border-color: var(--ink); color: var(--ink); }
+
+/* SECTIONS */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 7rem 3.5rem;
+}
+
+.section-header {
+  display: flex; align-items: baseline; gap: 1.5rem;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+}
+
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.about-pull {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+}
+.about-pull em { font-style: italic; color: var(--accent); }
+
+.about-body { font-size: 0.92rem; color: var(--ink2); line-height: 1.85; font-weight: 300; }
+.about-body p + p { margin-top: 1rem; }
+
+.about-facts { display: flex; flex-direction: column; }
+
+.fact-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+
+.fact-key {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.fact-val { font-size: 0.9rem; color: var(--ink); }
+
+.about-numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.num-cell {
+  padding: 2rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.num-cell:nth-child(2n) { border-right: none; }
+.num-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+.num-big {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+  display: block;
+}
+
+.num-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* SKILLS */
+.skills-wrap { background: var(--ink); }
+.skills-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 7rem 3.5rem;
+}
+.skills-inner .section-title { color: var(--bg); }
+.skills-inner .section-header { border-color: rgba(255,255,255,0.1); }
+
+.skills-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.skill-group {
+  padding: 2.5rem;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.skill-group:nth-child(2n) { border-right: none; }
+.skill-group:nth-last-child(-n+2) { border-bottom: none; }
+
+.skill-group-title {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+.skill-item {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 1rem;
+  color: rgba(240,237,231,0.8);
+  font-weight: 300;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.skill-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.skill-lvl {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* PROJECTS */
+.projects-list { display: flex; flex-direction: column; }
+
+.project-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 40px;
+  gap: 2.5rem;
+  align-items: start;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  cursor: default;
+}
+
+.project-row::before {
+  content: '';
+  position: absolute;
+  left: -3.5rem; right: -3.5rem; top: 0; bottom: 0;
+  background: var(--bg2);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.project-row:hover::before { opacity: 1; }
+.project-row > * { position: relative; z-index: 1; }
+
+.project-index {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  padding-top: 0.35rem;
+}
+
+.project-badge {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.2rem 0.6rem;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.project-name {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--ink2);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 580px;
+  margin-bottom: 1.25rem;
+}
+
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.project-tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.2rem 0.7rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+}
+
+.project-arrow {
+  font-size: 1.4rem;
+  color: var(--border);
+  transition: color 0.2s, transform 0.2s;
+  padding-top: 0.2rem;
+  font-weight: 300;
+}
+.project-row:hover .project-arrow { color: var(--accent); transform: translateX(4px); }
+
+/* EDUCATION */
+.edu-block {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 4rem;
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.edu-year {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+  padding-top: 0.3rem;
+}
+
+.edu-inst {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.edu-deg {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.edu-detail {
+  font-size: 0.88rem;
+  color: var(--ink2);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.edu-grade {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.edu-grade strong {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* CONTACT */
+.contact-wrap { background: var(--ink); }
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 3.5rem;
+}
+
+.contact-large {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--bg);
+  margin-bottom: 4rem;
+}
+.contact-large em { font-style: italic; color: var(--accent); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.contact-item {
+  padding: 2rem 2.5rem;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  text-decoration: none;
+  transition: background 0.2s;
+  display: block;
+}
+.contact-item:last-child { border-right: none; }
+.contact-item:hover { background: rgba(255,255,255,0.04); }
+
+.contact-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+.contact-val {
+  font-size: 0.9rem;
+  color: rgba(240,237,231,0.8);
+  font-weight: 300;
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 1.75rem 3.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+footer span, footer a {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-decoration: none;
+}
+footer a:hover { color: var(--bg); }
+
+hr { border: none; border-top: 1px solid var(--border); }
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* MOBILE */
+@media (max-width: 800px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { padding: 0 1.5rem 2.5rem; }
+  .hero-bottom { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-cta { align-items: flex-start; flex-direction: row; }
+  .section, .skills-inner, .contact-inner { padding: 4.5rem 1.5rem; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .skills-cols { grid-template-columns: 1fr; }
+  .skill-group { border-right: none !important; }
+  .project-row { grid-template-columns: 50px 1fr; }
+  .project-arrow { display: none; }
+  .project-row::before { left: -1.5rem; right: -1.5rem; }
+  .edu-block { grid-template-columns: 1fr; gap: 1rem; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .contact-item:last-child { border-bottom: none; }
+  .cursor { display: none; }
+  body { cursor: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="#" class="nav-mark">Kevin Seelu</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div></div>
+  <div class="hero-center">
+    <div class="hero-eyebrow">Electronics & Instrumentation · RSET Kochi</div>
+    <h1 class="hero-name">Kevin<br><em>Seelu</em></h1>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      Engineering student building at the intersection of hardware, sensors, and embedded systems. Focused on real-world impact through instrumentation and control.
+    </p>
+    <div class="hero-meta">
+      <span>Institution</span><strong>RSET, Kakkanad, Kochi</strong>
+      <span style="margin-top:0.6rem">Semester</span><strong>6 of 8 · Graduating May 2027</strong>
+      <span style="margin-top:0.6rem">CGPA</span><strong>8.5 / 10.0</strong>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-solid">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Contact Me</a>
+    </div>
+  </div>
+</header>
+
+<hr/>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About</h2>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p class="about-pull reveal">
+        An engineer who likes solving problems <em>at the hardware level</em> — where signals are real and the stakes are physical.
+      </p>
+      <div class="about-body reveal" style="transition-delay:0.1s">
+        <p>I'm a B.Tech student in Applied Electronics & Instrumentation Engineering at Rajagiri School of Engineering and Technology, currently in Semester 6 of 8.</p>
+        <p>My work spans embedded systems, sensor integration, and signal-level electronics. I'm actively building projects in water quality sensing and RC vehicle systems while sharpening my DSA skills on LeetCode daily.</p>
+        <p>Targeting placement by graduation and exploring M.Tech opportunities in Australia and Europe. GRE prep ongoing — aiming for 330, exam February 2027.</p>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.15s">
+      <div class="about-facts">
+        <div class="fact-row"><span class="fact-key">Location</span><span class="fact-val">Kochi (Hostel) · Bangalore (Home)</span></div>
+        <div class="fact-row"><span class="fact-key">Degree</span><span class="fact-val">B.Tech AEI · RSET</span></div>
+        <div class="fact-row"><span class="fact-key">Graduating</span><span class="fact-val">May 2027</span></div>
+        <div class="fact-row"><span class="fact-key">GRE Target</span><span class="fact-val">330 · Feb 2027</span></div>
+        <div class="fact-row"><span class="fact-key">Priority</span><span class="fact-val">Placement → M.Tech Abroad</span></div>
+        <div class="fact-row"><span class="fact-key">Countries</span><span class="fact-val">Australia · Germany · Europe</span></div>
+      </div>
+      <div class="about-numbers">
+        <div class="num-cell"><span class="num-big">8.5</span><span class="num-label">CGPA</span></div>
+        <div class="num-cell"><span class="num-big">2+</span><span class="num-label">Projects</span></div>
+        <div class="num-cell"><span class="num-big">4</span><span class="num-label">Tech Stacks</span></div>
+        <div class="num-cell"><span class="num-big">'27</span><span class="num-label">Graduation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="skills-wrap" id="skills">
+  <div class="skills-inner">
+    <div class="section-header">
+      <span class="section-num" style="color:var(--muted)">02</span>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-cols">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Languages</div>
+        <ul class="skill-list">
+          <li class="skill-item">C <span class="skill-lvl">Proficient</span></li>
+          <li class="skill-item">C++ <span class="skill-lvl">Proficient</span></li>
+        </ul>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.05s">
+        <div class="skill-group-title">Tools & Platforms</div>
+        <ul class="skill-list">
+          <li class="skill-item">Arduino IDE <span class="skill-lvl">Proficient</span></li>
+          <li class="skill-item">MATLAB <span class="skill-lvl">Competent</span></li>
+        </ul>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.1s">
+        <div class="skill-group-title">Domain Knowledge</div>
+        <ul class="skill-list">
+          <li class="skill-item">Embedded Systems <span class="skill-lvl">Core Focus</span></li>
+          <li class="skill-item">Sensor Integration <span class="skill-lvl">Hands-on</span></li>
+          <li class="skill-item">Signal Processing <span class="skill-lvl">Competent</span></li>
+        </ul>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.15s">
+        <div class="skill-group-title">Academic Focus</div>
+        <ul class="skill-list">
+          <li class="skill-item">VLSI Design <span class="skill-lvl">Sem 6</span></li>
+          <li class="skill-item">Power Electronics <span class="skill-lvl">Sem 6</span></li>
+          <li class="skill-item">Process Control <span class="skill-lvl">Sem 6</span></li>
+          <li class="skill-item">DSA · LeetCode <span class="skill-lvl">Active</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-list">
+    <div class="project-row reveal">
+      <div class="project-index">01</div>
+      <div>
+        <div class="project-badge">Ongoing</div>
+        <div class="project-name">Water Quality Index<br>Sensing System</div>
+        <p class="project-desc">Hardware-based water quality monitoring system measuring turbidity, pH, temperature, and multiple parameters. Features automated sampling, dual monitoring modes, and a field-deployable enclosure. Campus pilot at RSET targeting industrial water quality management across Kerala — planned LoRa comms, OLED display, and cloud connectivity.</p>
+        <div class="project-tags">
+          <span class="project-tag">Arduino</span>
+          <span class="project-tag">C++</span>
+          <span class="project-tag">Sensors</span>
+          <span class="project-tag">IoT</span>
+          <span class="project-tag">LoRa</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <div class="project-row reveal" style="transition-delay:0.1s">
+      <div class="project-index">02</div>
+      <div>
+        <div class="project-badge">Ongoing</div>
+        <div class="project-name">RC Controlled<br>Car</div>
+        <p class="project-desc">Remote-controlled vehicle focused on embedded motor control, RF communication, and real-time command processing. Hands-on exploration of control systems, embedded electronics integration, and low-latency signal handling.</p>
+        <div class="project-tags">
+          <span class="project-tag">Arduino</span>
+          <span class="project-tag">RF Modules</span>
+          <span class="project-tag">Motor Control</span>
+          <span class="project-tag">Embedded C</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<hr/>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-block reveal">
+    <div class="edu-year">Sep 2023 — May 2027<br/><br/>Kakkanad, Kerala</div>
+    <div>
+      <div class="edu-inst">Rajagiri School of Engineering & Technology</div>
+      <div class="edu-deg">B.Tech in Applied Electronics<br>& Instrumentation Engineering</div>
+      <p class="edu-detail">Semester 6 of 8. Coursework: VLSI Design, Digital Design Verification, Communication Engineering, Industrial Power Electronics, and Process Dynamics & Industrial Automation.</p>
+      <div class="edu-grade"><strong>8.5</strong> &nbsp;/ 10.0 CGPA</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="contact-inner">
+    <div class="contact-large reveal">Let's<br><em>Connect.</em></div>
+    <div class="contact-grid reveal" style="transition-delay:0.1s">
+      <a href="mailto:your@email.com" class="contact-item">
+        <div class="contact-label">Email</div>
+        <div class="contact-val">your@email.com</div>
+      </a>
+      <a href="https://linkedin.com/in/kevinseelu" target="_blank" class="contact-item">
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-val">linkedin.com/in/kevinseelu</div>
+      </a>
+      <a href="https://github.com/kevinseelu" target="_blank" class="contact-item">
+        <div class="contact-label">GitHub</div>
+        <div class="contact-val">github.com/kevinseelu</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Kevin Seelu</span>
+  <span>Kochi, India</span>
+  <a href="#" id="totop">Back to top ↑</a>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+document.getElementById('totop').addEventListener('click', e => {
+  e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
